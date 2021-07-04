@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16D013882691F84A0050E7BA /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D013872691F84A0050E7BA /* ContentModel.swift */; };
 		16F9CFDF2690EFA000AEA1D0 /* LearningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9CFDE2690EFA000AEA1D0 /* LearningApp.swift */; };
 		16F9CFE12690EFA000AEA1D0 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F9CFE02690EFA000AEA1D0 /* HomeView.swift */; };
 		16F9CFE32690EFA200AEA1D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16F9CFE22690EFA200AEA1D0 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16D013872691F84A0050E7BA /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
 		16F9CFDB2690EFA000AEA1D0 /* LearningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16F9CFDE2690EFA000AEA1D0 /* LearningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningApp.swift; sourceTree = "<group>"; };
 		16F9CFE02690EFA000AEA1D0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 		16D013812691F7CC0050E7BA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				16D013872691F84A0050E7BA /* ContentModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			files = (
 				16F9CFE12690EFA000AEA1D0 /* HomeView.swift in Sources */,
 				16F9CFDF2690EFA000AEA1D0 /* LearningApp.swift in Sources */,
+				16D013882691F84A0050E7BA /* ContentModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
