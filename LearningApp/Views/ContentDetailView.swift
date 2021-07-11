@@ -22,10 +22,11 @@ struct ContentDetailView: View {
             if url != nil{
                 VideoPlayer(player: AVPlayer(url: url!))
                     .cornerRadius(10)
+                    .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fill)
             }
             
             //TODO: Description
-            Text("")
+            CodeTextView()
             //Show next lesson button only if there is one
             if model.hasNextLesson(){
                 Button(action: {
@@ -50,6 +51,7 @@ struct ContentDetailView: View {
             }
         }
         .padding()
+        .navigationBarTitle(lesson?.title ?? "")
     }
 }
 
