@@ -12,6 +12,7 @@ struct HomeView: View {
     
     @EnvironmentObject var model: ContentModel
     
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading){
@@ -28,12 +29,16 @@ struct HomeView: View {
                                         ContentView()
                                             .onAppear(perform:{
                                                 model.beginModule(module.id)
+                                                
                                         }),
+                                    tag: module.id,
+                                    selection: $model.currentContentSelected,
                                     label: {
+                                        //Learning Card
                                         HomeViewRow(image: module.content.image, title: "Learn \(module.category)", description: module.content.description, count: "\(module.content.lessons.count) Lessons", time: module.content.time)
                                     })
                                 
-                                //Learning Card
+                               
                                 
                                 
                                 //Test Card

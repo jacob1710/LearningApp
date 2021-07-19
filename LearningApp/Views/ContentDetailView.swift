@@ -22,7 +22,9 @@ struct ContentDetailView: View {
             if url != nil{
                 VideoPlayer(player: AVPlayer(url: url!))
                     .cornerRadius(10)
-                    .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fill)
+                    .aspectRatio(CGSize(width: 16, height: 9), contentMode: .fit)
+                    
+                    
             }
             
             //TODO: Description
@@ -41,6 +43,27 @@ struct ContentDetailView: View {
                             .cornerRadius(10)
                             .shadow(radius: 5)
                         Text("Next Lesson: \(model.currentModule!.content.lessons[model.currentLessonIndex + 1].title)")
+                            .foregroundColor(.white)
+                            .bold()
+                    }
+                    
+                    
+                    
+                })
+            }else{
+                //Show complete button instead
+                Button(action: {
+                    //Take user back to home view
+                    model.currentContentSelected = nil
+                }, label: {
+                    
+                    ZStack{
+                        Rectangle()
+                            .frame(height:48)
+                            .foregroundColor(Color.green)
+                            .cornerRadius(10)
+                            .shadow(radius: 5)
+                        Text("Complete")
                             .foregroundColor(.white)
                             .bold()
                     }
