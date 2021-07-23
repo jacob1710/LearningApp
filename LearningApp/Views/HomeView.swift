@@ -55,6 +55,7 @@ struct HomeView: View {
                                 NavigationLink(destination: EmptyView()){
                                     EmptyView()
                                 }
+                                
                             }
                         }
                         

@@ -24,6 +24,8 @@ struct ResultsView: View {
             return "Keep Learning"
         }
     }
+    
+    
     var body: some View {
         VStack{
             Spacer()

@@ -34,7 +34,9 @@ class ContentModel: ObservableObject {
     @Published var currentTestSelected:Int?
     
     init() {
+        
         getLocalData()
+        getRemoteData()
     }
     
     //MARK: Data Methods
@@ -57,7 +59,7 @@ class ContentModel: ObservableObject {
             //Assign parsed modules to modules properly\
             self.modules = modules
         }catch{
-            print(error)
+            print("Error with parsing local data")
         }
        
         
@@ -73,6 +75,47 @@ class ContentModel: ObservableObject {
         }
         
     }
+    
+    func getRemoteData(){
+        let urlPath = "https://jacob1710.github.io/learningapp-data/data2.json"
+        
+        let url = URL(string: urlPath)
+        
+        guard url != nil else {
+            //Couldnt create url
+            return
+        }
+        let urlRequest = URLRequest(url: url!)
+        
+        let session = URLSession.shared
+        
+        let dataTask = session.dataTask(with: urlRequest) { data, response, error in
+            guard error == nil else{
+                //Was error with getting the data
+                return
+            }
+            
+            do{
+                let jsonDecoder = JSONDecoder()
+                
+                let modules = try jsonDecoder.decode([Module].self, from: data!)
+                
+                self.modules += modules
+            }catch{
+                print("Error with parsing remote data")
+            }
+           
+            
+            
+            
+            
+            
+        }
+        //kick off the data task
+        dataTask.resume()
+        
+    }
+    
     //MARK: Module navigation methods
     func beginModule(_ moduleid:Int){
         
