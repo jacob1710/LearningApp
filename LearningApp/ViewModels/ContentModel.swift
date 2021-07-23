@@ -100,15 +100,14 @@ class ContentModel: ObservableObject {
                 
                 let modules = try jsonDecoder.decode([Module].self, from: data!)
                 
-                self.modules += modules
+                DispatchQueue.main.async {
+                    self.modules += modules
+                }
+                
             }catch{
                 print("Error with parsing remote data")
             }
            
-            
-            
-            
-            
             
         }
         //kick off the data task
