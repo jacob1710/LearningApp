@@ -39,7 +39,12 @@ struct HomeView: View {
                                     }
                                 )
                                 NavigationLink(
-                                    destination: TestView(),
+                                    destination: TestView()
+                                        .onAppear(
+                                            perform: {
+                                                model.beginTest(module.id)
+                                            }
+                                        ),
                                     tag: module.id,
                                     selection: $model.currentTestSelected,
                                     label: {

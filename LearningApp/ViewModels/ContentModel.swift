@@ -25,7 +25,7 @@ class ContentModel: ObservableObject {
     var currentQuestionIndex = 0
     
     //Current lesson explanation
-    @Published var lessonDescription = NSAttributedString()
+    @Published var codeText = NSAttributedString()
     var styleData: Data?
     
     //Current Selected content and test
@@ -99,7 +99,7 @@ class ContentModel: ObservableObject {
         
         //Set current lesson
         currentLesson = currentModule!.content.lessons[currentLessonIndex]
-        lessonDescription = addStyling(currentLesson!.explanation)
+        codeText = addStyling(currentLesson!.explanation)
     }
     
     func nextLesson(){
@@ -111,7 +111,7 @@ class ContentModel: ObservableObject {
             
             //Set current lesson property
             currentLesson = currentModule!.content.lessons[currentLessonIndex]
-            lessonDescription = addStyling(currentLesson!.explanation)
+            codeText = addStyling(currentLesson!.explanation)
         }else{
             //Reset lesson state
             currentLesson = nil
@@ -124,6 +124,23 @@ class ContentModel: ObservableObject {
     
     func hasNextLesson() -> Bool{
         return (currentLessonIndex + 1 < currentModule!.content.lessons.count)
+    }
+    
+    func beginTest(_ moduleId:Int){
+        //Set the current Module
+        beginModule(moduleId)
+        
+        //Set the current question
+        currentQuestionIndex = 0
+        //If there are questions, set the current question to the first one
+        if currentModule?.test.questions.count ?? 0 > 0{
+            currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+            
+            //Set the question content
+            
+            codeText = addStyling(currentQuestion!.content)
+        }
+        
     }
     
     //MARK: Code styling
