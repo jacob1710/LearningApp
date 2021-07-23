@@ -65,6 +65,16 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Get Started")
+            .onChange(of: model.currentContentSelected, perform: { value in
+                if value == nil{
+                    model.currentModule = nil
+                }
+            })
+            .onChange(of: model.currentTestSelected, perform: { value in
+                if value == nil{
+                    model.currentModule = nil
+                }
+            })
         }
     }
 }
