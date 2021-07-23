@@ -9,11 +9,14 @@ import SwiftUI
 
 struct TestView: View {
     @EnvironmentObject var model:ContentModel
+    
     @State var selectedAnswerIndex:Int?
     @State var numCorrect = 0
     @State var haveSubmitted = false
+    @State var showResults = false
+    
     var body: some View {
-        if model.currentQuestion != nil{
+        if model.currentQuestion != nil && !showResults {
             VStack(alignment: .leading){
                 //Question Number
                 
@@ -78,19 +81,19 @@ struct TestView: View {
                 Button(action: {
                     //Check answer and increment counter if correct
                     if haveSubmitted == true{
+                        if model.currentQuestionIndex + 1 == model.currentModule!.test.questions.count{
+                            //If last question
+                            showResults = true
+                            
+                        }
                         selectedAnswerIndex = nil
                         haveSubmitted = false
                         model.nextQuestion()
                         
                         
-                       
-                        
-                       
-                       
-                        
-                        
-                        
+
                     }else{
+                        //Submit
                         haveSubmitted = true
                         if selectedAnswerIndex == model.currentQuestion!.correctIndex{
                             numCorrect+=1
@@ -114,8 +117,11 @@ struct TestView: View {
             }
             .navigationBarTitle("\(model.currentModule?.category ?? "") Test")
             
-        }else{
+        }else if showResults{
             //Test hasnt loaded yet
+//            ProgressView()
+            ResultsView(numCorrect: numCorrect)
+        }else{
             ProgressView()
         }
     }
