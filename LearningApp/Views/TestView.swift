@@ -12,7 +12,6 @@ struct TestView: View {
     @State var selectedAnswerIndex:Int?
     @State var numCorrect = 0
     @State var haveSubmitted = false
-    @State var answerButtonColor = Color.green
     var body: some View {
         if model.currentQuestion != nil{
             VStack(alignment: .leading){
@@ -39,8 +38,8 @@ struct TestView: View {
                                             .frame(height:48)
                                     }else{
                                         //Answer has been submitted
-                                        if selectedAnswerIndex == index{
-                                            if selectedAnswerIndex == model.currentQuestion!.correctIndex{
+                                        if selectedAnswerIndex == index {
+                                            if index == model.currentQuestion!.correctIndex{
                                                 //If correct selected answer
                                                 RectangleCard(color: .green)
                                                     .frame(height:48)
@@ -75,20 +74,38 @@ struct TestView: View {
                     .padding()
                 }
                 
-                //Button
+                //Submit button
                 Button(action: {
                     //Check answer and increment counter if correct
-                    haveSubmitted = true
-                    if selectedAnswerIndex == model.currentQuestion!.correctIndex{
-                        numCorrect+=1
+                    if haveSubmitted == true{
+                        selectedAnswerIndex = nil
+                        haveSubmitted = false
+                        model.nextQuestion()
+                        
+                        
+                       
+                        
+                       
+                       
+                        
+                        
+                        
+                    }else{
+                        haveSubmitted = true
+                        if selectedAnswerIndex == model.currentQuestion!.correctIndex{
+                            numCorrect+=1
+                        }
                     }
+                   
                 }, label: {
+                   
                     ZStack{
                         RectangleCard(color: .green)
                             .frame(height:48)
-                        Text("Submit")
+                        Text(buttonText)
                             .bold()
                             .foregroundColor(.white)
+                        
                     }
                     .padding()
                 })
@@ -100,6 +117,19 @@ struct TestView: View {
         }else{
             //Test hasnt loaded yet
             ProgressView()
+        }
+    }
+    var buttonText: String{
+        if haveSubmitted == true{
+            if model.currentQuestionIndex + 1 == model.currentModule!.test.questions.count{
+                return "Complete Quiz"
+                
+            }else{
+               
+                return "Next Question"
+            }
+        }else{
+            return "Submit"
         }
     }
 }
